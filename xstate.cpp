@@ -82,3 +82,27 @@ enum InterpreterStatus {
 };
 
 const char *InterpreterStatusStrings[] = { "notStarted", "started", "stopped" };
+
+struct InterpreterState {
+	const char *value;
+};
+
+struct Interpreter {
+	private:
+
+	InterpreterStatus status;
+
+	InterpreterState *state;
+	StateMachine *stateMachine;
+
+	public:
+
+	Interpreter(StateMachine *stateMachine)
+		:
+		stateMachine(stateMachine),
+		state(new InterpreterState({ .value = stateMachine->initial})),
+		status(notStarted)
+	{
+	}
+
+};
