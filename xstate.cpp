@@ -42,3 +42,35 @@ struct State {
  *
  */
 typedef std::map<const char *, State> States;
+
+/**
+ * {
+ *	.id = "light",
+ *	.initial = "green",
+ *	.states = {
+ *		{
+ *			"green" ,
+ *			{ .on = { { "TIMER", "yellow" } } }
+ *		},
+ *		{
+ *			"yellow",
+ *			{ .on = { { "TIMER", "red"    } } }
+ *		},
+ *		{
+ *			"red"  ,
+ *			{ .on = { { "TIMER", "green"  } } }
+ *		}
+ *	}
+ * };
+ *
+ */
+struct StateMachine {
+	const char *id;
+	const char *initial;
+	States states;
+
+	const char *transition(const char *currentState, const char *event) {
+		const char *nextState = this->states[currentState].on[event];
+		return nextState;
+	}
+};
