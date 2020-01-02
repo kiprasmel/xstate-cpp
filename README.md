@@ -2,6 +2,29 @@
 
 I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 
+## Installation
+
+You only need the [`xstate.h`](./xstate.h) header file - that's it.
+
+* platformio
+
+> SOON
+
+* git + submodules
+
+```sh
+git submodules add https://github.com/sarpik/xstate-cpp.git
+# or:  git submodules add git@github.com/sarpik/xstate-cpp.git
+git submodules update --init --recursive
+```
+
+* git
+
+```sh
+git clone https://github.com/sarpik/xstate-cpp.git
+# or:  git clone git@github.com:sarpik/xstate-cpp.git
+```
+
 ## Usage
 
 ```cpp
