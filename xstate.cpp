@@ -197,4 +197,32 @@ struct Interpreter {
 		this->handleOnTransition = [&]() { callback(this); };
 		return this;
 	}
+
+
+
+	// std::function<void()> onStop = []() {};
+	// void onStop(std::function<void(const InterpreterState *state)> callback = [](const InterpreterState *state) {}) const {
+	// 	callback(this->state);
+	// }
+
+	Interpreter *stop() {
+		this->status = stopped;
+		this->handleOnStop();
+		return this;
+	}
+
+	/** the one we call ourselves */
+	private: std::function<const void()> handleOnStop = []() {};
+
+	/** the one we expose to the consumer so he can inject the callback */
+	public:
+	Interpreter *onStop(const std::function<const void(                 )> callback = [](                 ) {}) {
+		this->handleOnStop = [&]() { callback(    ); };
+		return this;
+	}
+
+	Interpreter *onStop(const std::function<const void(Interpreter *self)> callback = [](Interpreter *self) {}) {
+		this->handleOnStop = [&]() { callback(this); };
+		return this;
+	}
 };
