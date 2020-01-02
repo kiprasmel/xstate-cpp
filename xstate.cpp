@@ -13,6 +13,7 @@
  *
 */
 
+#include <cstdio>
 #include <map>
 /**
  * {
@@ -105,4 +106,12 @@ struct Interpreter {
 	{
 	}
 
+	const char *getStatusStr() const {
+		return InterpreterStatusStrings[this->status];
+	}
+
+	Interpreter *logInfo() {
+		printf("status = %d (%s) | state = %s \n", this->status, this->getStatusStr(), this->state->value);
+		return this;
+	}
 };
