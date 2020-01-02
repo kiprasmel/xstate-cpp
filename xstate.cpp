@@ -226,3 +226,15 @@ struct Interpreter {
 		return this;
 	}
 };
+
+Interpreter *interpret(StateMachine  stateMachine) {
+	Interpreter *interpreter = new Interpreter(new StateMachine(stateMachine));
+
+	return interpreter;
+}
+
+Interpreter *interpret(StateMachine *stateMachine) {
+	Interpreter *interpreter = new Interpreter(                 stateMachine );
+
+	return interpreter;
+}
