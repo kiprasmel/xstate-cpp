@@ -1,0 +1,20 @@
+{
+	"name": "XState-cpp",
+	"keywords": "xstate, cpp, state-machine, statechart, interpreter, scxml, state, state-management",
+	"description": "XState for the C++ land",
+	"authors": {
+		"name": "Kipras Melnikovas",
+		"email": "kipras@kipras.org",
+		"url": "https://kipras.org",
+		"maintainer": true
+	},
+	"dependencies": {
+		"name": "StandardCplusplus"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sarpik/xstate-cpp.git"
+	},
+	"frameworks": "*",
+	"platforms": "*"
+}
