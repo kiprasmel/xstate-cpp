@@ -12,3 +12,13 @@
  * ```
  *
 */
+
+/**
+ * {
+ * 	.on = { { "EVENT", "nextState" } }
+ * };
+ *
+ */
+struct State {
+	std::map<const char *, const char *> on;
+};
