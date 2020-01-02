@@ -16,6 +16,9 @@
 #include <cstdio>
 #include <map>
 #include <functional>
+
+namespace xs {
+
 /**
  * {
  * 	.on = { { "EVENT", "nextState" } }
@@ -238,3 +241,5 @@ Interpreter *interpret(StateMachine *stateMachine) {
 
 	return interpreter;
 }
+
+} // namespace xs
