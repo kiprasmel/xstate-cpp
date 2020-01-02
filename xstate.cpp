@@ -13,6 +13,7 @@
  *
 */
 
+#include <map>
 /**
  * {
  * 	.on = { { "EVENT", "nextState" } }
@@ -22,3 +23,22 @@
 struct State {
 	std::map<const char *, const char *> on;
 };
+
+/**
+ * {
+ *	{
+ *		"green" ,
+ *		{ .on = { { "TIMER", "yellow" } } }
+ *	},
+ *	{
+ *		"yellow",
+ *		{ .on = { { "TIMER", "red"    } } }
+ *	},
+ *	{
+ *		"red"  ,
+ *		{ .on = { { "TIMER", "green"  } } }
+ *	}
+ * };
+ *
+ */
+typedef std::map<const char *, State> States;
