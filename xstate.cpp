@@ -15,6 +15,7 @@
 
 #include <cstdio>
 #include <map>
+#include <functional>
 /**
  * {
  * 	.on = { { "EVENT", "nextState" } }
@@ -140,6 +141,28 @@ struct Interpreter {
 
 		this->handleOnTransition();
 
+		return this;
+	}
+
+	// std::function<void(                             )> onTransition = [](                             ) {};
+	// std::function<void(const InterpreterState *state)> onTransition = [](const InterpreterState *state) {};
+
+	// void onTransition(std::function<void()> callback = []() {}) const {
+	// 	callback();
+	// }
+
+	/** the one we call ourselves */
+	private: std::function<const void()> handleOnTransition = []() {};
+
+	/** the one we expose to the consumer so he can inject the callback */
+	public:
+	Interpreter *onTransition(const std::function<const void(                 )> callback = [](                 ) {}) {
+		this->handleOnTransition = [&]() { callback(    ); };
+		return this;
+	}
+
+	Interpreter *onTransition(const std::function<const void(Interpreter *self)> callback = [](Interpreter *self) {}) {
+		this->handleOnTransition = [&]() { callback(this); };
 		return this;
 	}
 };
