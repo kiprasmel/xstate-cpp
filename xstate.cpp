@@ -144,6 +144,38 @@ struct Interpreter {
 		return this;
 	}
 
+	/** handlers (identical) */
+
+
+
+	// void onStart(std::function<void(const InterpreterState *state)> callback = [](const InterpreterState *state) {}) const {
+	// 	callback(this->state);
+	// }
+
+	Interpreter *start() {
+		this->status = started;
+		this->handleOnStart();
+
+		return this;
+	}
+
+	/** the one we call ourselves */
+	private: std::function<const void()> handleOnStart = []() {};
+
+	public:
+	Interpreter *onStart(const std::function<const void(                 )> callback = [](                 ) {}) {
+		this->handleOnStart = [&]() { callback(    ); };
+		return this;
+	}
+
+	/** the one we expose to the consumer so he can inject the callback */
+	Interpreter *onStart(const std::function<const void(Interpreter *self)> callback = [](Interpreter *self) {}) {
+		this->handleOnStart = [&]() { callback(this); };
+		return this;
+	}
+
+
+
 	// std::function<void(                             )> onTransition = [](                             ) {};
 	// std::function<void(const InterpreterState *state)> onTransition = [](const InterpreterState *state) {};
 
