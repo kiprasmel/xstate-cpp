@@ -114,4 +114,32 @@ struct Interpreter {
 		printf("status = %d (%s) | state = %s \n", this->status, this->getStatusStr(), this->state->value);
 		return this;
 	}
+
+	Interpreter *send(const char *event) {
+		if (this->status != started) {
+			fprintf(
+				stderr,
+				"\nERR interpreter.send was called when it was not started / stopped (%s).\n",
+				this->getStatusStr()
+			);
+
+			throw;
+		}
+
+		const char *nextState = this->stateMachine->transition(this->state->value, event);
+		// printf("nextState %s\n", nextState);
+
+		/**
+		 * An event might've been fired at the wrong time /
+		 * when the state didn't have any handlers for that specific event,
+		 * thus we just skip it, since that's allowed.
+		 */
+		if (nextState != NULL) {
+			this->state->value = nextState;
+		}
+
+		this->handleOnTransition();
+
+		return this;
+	}
 };
