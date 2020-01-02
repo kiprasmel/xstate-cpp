@@ -74,3 +74,11 @@ struct StateMachine {
 		return nextState;
 	}
 };
+
+enum InterpreterStatus {
+	notStarted,
+	started,
+	stopped
+};
+
+const char *InterpreterStatusStrings[] = { "notStarted", "started", "stopped" };
