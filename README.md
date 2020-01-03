@@ -10,7 +10,7 @@ I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 
 ## Installation
 
-You only need the [`xstate.h`](./xstate.h) header file - that's it.
+You need [`./xstate.cpp`](./xstate.cpp) + [`./xstate.h`](./xstate.h) files - that's about it.
 
 * platformio
 
@@ -97,6 +97,11 @@ for example,
 ```sh
 g++ -std=c++17 ./xstate.cpp -o xstate.out
 ```
+
+## Takeaways & learnings
+
+Definitely do NOT put a constant char pointer array in a header file.
+Fucking hell
 
 ## License
 
