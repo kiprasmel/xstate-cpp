@@ -5,12 +5,12 @@ I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 ## Features
 
 * Basic stuff (I dunno I'm new here I just wanted a state machine for myself ☃)
-* Nested state machines just landed in by #5 - see [./xstate.cpp](./xstate.cpp) for an example.
+* Nested state machines just landed in by #5 - see [./example.cpp](./example.cpp) for an example.
 * Others coming in real soon. Actually, even sooner, if you wanna contribute:P
 
 ## Installation
 
-You need [`./xstate.cpp`](./xstate.cpp) + [`./xstate.h`](./xstate.h) files - that's about it.
+You need to compile all the `.cpp` files - makefile coming soon.
 
 * platformio
 
@@ -22,6 +22,8 @@ You need [`./xstate.cpp`](./xstate.cpp) + [`./xstate.h`](./xstate.h) files - tha
 git submodules add https://github.com/sarpik/xstate-cpp.git
 # or:  git submodules add git@github.com/sarpik/xstate-cpp.git
 git submodules update --init --recursive
+
+g++ -std=c++17 ./xstate-cpp/src/*.cpp -o xstate.out
 ```
 
 * git
@@ -29,6 +31,8 @@ git submodules update --init --recursive
 ```sh
 git clone https://github.com/sarpik/xstate-cpp.git
 # or:  git clone git@github.com:sarpik/xstate-cpp.git
+
+g++ -std=c++17 ./xstate-cpp/src/*.cpp -o xstate.out
 ```
 
 ## Usage
