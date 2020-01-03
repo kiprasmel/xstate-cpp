@@ -49,50 +49,50 @@ See also [./example.cpp](./example.cpp)
 using namespace xs;
 
 int main() {
-	StateMachine machine = {
-		.id = "light",
-		.initial = "green",
-		.states = {
-			{
-				"green" ,
-				{ .on = { { "TIMER", "yellow" } } }
-			},
-			{
-				"yellow",
-				{ .on = { { "TIMER", "red"    } } }
-			},
-			{
-				"red"  ,
-				{ .on = { { "TIMER", "green"  } } }
-			}
-		}
-	};
+  StateMachine machine = {
+    .id = "light",
+    .initial = "green",
+    .states = {
+      {
+        "green" ,
+        { .on = { { "TIMER", "yellow" } } }
+      },
+      {
+        "yellow",
+        { .on = { { "TIMER", "red"    } } }
+      },
+      {
+        "red"   ,
+        { .on = { { "TIMER", "green"  } } }
+      }
+    }
+  };
 
-	Interpreter *toggleMachine = interpret(machine)
-		->logInfo()
-		->onStart([]() {
-			printf("let's go!\n");
-		})
-		->onTransition([]() {
-			printf("yay we transitioned!\n");
-		})
-		->onStop([](Interpreter *self) {
-			printf("oh no we stopped c:\n");
-			self->logInfo();
-		})
-		->start();
+  Interpreter *toggleMachine = interpret(machine)
+    ->logInfo()
+    ->onStart([]() {
+      printf("let's go!\n");
+    })
+    ->onTransition([]() {
+      printf("yay we transitioned!\n");
+    })
+    ->onStop([](Interpreter *self) {
+      printf("oh no we stopped c:\n");
+      self->logInfo();
+    })
+    ->start();
 
-	toggleMachine->send("TIMER");
+  toggleMachine->send("TIMER");
 
-	toggleMachine->send("TIMER");
+  toggleMachine->send("TIMER");
 
-	toggleMachine->send("TIMER");
+  toggleMachine->send("TIMER");
 
-	toggleMachine->stop();
+  toggleMachine->stop();
 
-	delete toggleMachine;
+  delete toggleMachine;
 
-	return 0;
+  return 0;
 }
 ```
 
