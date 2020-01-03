@@ -23,7 +23,8 @@ git submodules add https://github.com/sarpik/xstate-cpp.git
 # or:  git submodules add git@github.com/sarpik/xstate-cpp.git
 git submodules update --init --recursive
 
-g++ -std=c++17 ./xstate-cpp/src/*.cpp -o xstate.out
+g++ -std=c++17 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
+./example.out
 ```
 
 * git
@@ -32,10 +33,15 @@ g++ -std=c++17 ./xstate-cpp/src/*.cpp -o xstate.out
 git clone https://github.com/sarpik/xstate-cpp.git
 # or:  git clone git@github.com:sarpik/xstate-cpp.git
 
-g++ -std=c++17 ./xstate-cpp/src/*.cpp -o xstate.out
+g++ -std=c++17 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
+./example.out
 ```
 
+obviously, you subsitute the `example.cpp` with your own source files & get some spicy state machines.
+
 ## Usage
+
+See also [./example.cpp](./example.cpp)
 
 ```cpp
 #include "xstate.h"
