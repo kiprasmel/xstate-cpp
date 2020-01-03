@@ -12,7 +12,7 @@
  * compile with:
  *
  * ```sh
- * g++ -std=c++11 ./xstate.cpp -o xstate.out
+ * g++ -std=c++17 ./xstate.cpp -o xstate.out
  * ```
  *
 */
