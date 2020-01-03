@@ -3,5 +3,4 @@
 PROGNAME="${1:-"xstate"}"
 
 #g++ -std=c++2a ./"$PROGNAME".cpp -o "$PROGNAME".out && ./"$PROGNAME".out
-
 g++ -std=c++17 *.cpp -o "$PROGNAME".out && ./"$PROGNAME".out

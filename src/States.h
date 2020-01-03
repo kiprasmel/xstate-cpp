@@ -3,9 +3,6 @@
 #include <map>
 #include <string>
 
-// #include "State.h"
-// #include "xstate.h"
-
 namespace xs {
 
 struct State;

@@ -50,18 +50,12 @@ Interpreter *Interpreter::send(const char *event) {
 /** handlers (identical) */
 
 
-
-// void onStart(std::function<void(const InterpreterState *state)> callback = [](const InterpreterState *state) {}) const {
-// 	callback(this->state);
-// }
-
 Interpreter *Interpreter::start() {
 	this->status = started;
 	this->handleOnStart();
 
 	return this;
 }
-
 
 Interpreter *Interpreter::onStart(const std::function<const void(                 )> callback = [](                 ) {}) {
 	this->handleOnStart = [&]() { callback(    ); };
@@ -75,14 +69,6 @@ Interpreter *Interpreter::onStart(const std::function<const void(Interpreter *se
 }
 
 
-
-// std::function<void(                             )> onTransition = [](                             ) {};
-// std::function<void(const InterpreterState *state)> onTransition = [](const InterpreterState *state) {};
-
-// void onTransition(std::function<void()> callback = []() {}) const {
-// 	callback();
-// }
-
 Interpreter *Interpreter::onTransition(const std::function<const void(                 )> callback = [](                 ) {}) {
 	this->handleOnTransition = [&]() { callback(    ); };
 	return this;
@@ -93,12 +79,6 @@ Interpreter *Interpreter::onTransition(const std::function<const void(Interprete
 	return this;
 }
 
-
-
-// std::function<void()> onStop = []() {};
-// void onStop(std::function<void(const InterpreterState *state)> callback = [](const InterpreterState *state) {}) const {
-// 	callback(this->state);
-// }
 
 Interpreter *Interpreter::stop() {
 	this->status = stopped;
@@ -115,6 +95,7 @@ Interpreter *Interpreter::onStop(const std::function<const void(Interpreter *sel
 	this->handleOnStop = [&]() { callback(this); };
 	return this;
 }
+
 
 Interpreter *interpret(StateMachine  stateMachine) {
 	Interpreter *interpreter = new Interpreter(new StateMachine(stateMachine));

@@ -1,9 +1,6 @@
 #pragma once
 
-// #include "State.h"
-// #include "States.h"
 #include "States.h"
-// #include "xstate.h"
 
 namespace xs {
 

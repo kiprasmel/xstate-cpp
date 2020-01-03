@@ -2,7 +2,6 @@
 
 #include <functional>
 
-// #include "StateMachine.h"
 #include "xstate.h"
 
 namespace xs {
