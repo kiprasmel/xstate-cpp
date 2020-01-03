@@ -61,6 +61,9 @@
 		"typeinfo": "cpp",
 		"valarray": "cpp",
 		"variant": "cpp",
-		"*.rh": "cpp"
+		"*.rh": "cpp",
+		"bitset": "cpp",
+		"complex": "cpp",
+		"typeindex": "cpp"
 	}
 }

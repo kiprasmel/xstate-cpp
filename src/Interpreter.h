@@ -1,55 +1,11 @@
 #pragma once
-// xstate.h
 
-/**
- * Originally by Kipras Melnikovas (https://kipras.org) <kipras@kipras.org>
- * MIT Licensed
- *
- *
- * This file is pretty meh because you'd have to separate out
- * the implementation into the `.cpp` file & that's *meh*,
- * thus we don't currently use it, but maybe in the future.
- *
-*/
-
-#include <map>
 #include <functional>
 
+// #include "StateMachine.h"
+#include "xstate.h"
+
 namespace xs {
-
-struct State;
-
-typedef std::map<std::string, State> States;
-// typedef std::map<const char *, State *> States;
-
-struct StateMachine {
-	const char *id;
-	const char *initial;
-	States states;
-	// States *states;
-
-	const char *transition(const char *currentState, const char *event);
-};
-
-// struct State : public StateMachine {
-struct State {
-	std::map<const char *, const char *> on;
-	StateMachine nested;
-};
-
-// struct StateMachine;
-// // {
-// // 	const char *id;
-// // 	const char *initial;
-// // 	States *states;
-
-// // 	const char *transition(const char *currentState, const char *event);
-// // };
-
-// struct State;
-// {
-// 	std::map<const char *, const char *> on;
-// };
 
 enum InterpreterStatus {
 	notStarted,
@@ -57,7 +13,7 @@ enum InterpreterStatus {
 	stopped
 };
 
-const char *InterpreterStatusStrings[] = { "notStarted", "started", "stopped" };
+extern const char *InterpreterStatusStrings[];
 
 struct InterpreterState {
 	const char *value;
