@@ -5,7 +5,7 @@ I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 ## Features
 
 * Basic stuff (I dunno I'm new here I just wanted a state machine for myself ☃)
-* Nested state machines just landed in by #5 - see [./example.cpp](./example.cpp) for an example.
+* Nested state machines just landed in by [#5](https://github.com/sarpik/xstate-cpp/pull/5) - see [./example.cpp](./example.cpp) for an example.
 * Others coming in real soon. Actually, even sooner, if you wanna contribute:P
 
 ## Installation
