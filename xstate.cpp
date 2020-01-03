@@ -241,7 +241,23 @@ int main() {
 			},
 			{
 				"red"  ,
-				{ .on = { { "TIMER", "green"  } } }
+				{
+					.on = { { "TIMER", "red.red-100"  } },
+					.nested = {
+						.id = "red-brightness",
+						.initial = "red-100",
+						.states = {
+							{
+								"red-100",
+								{ .on = { { "TIMER", "red.red-0" } } }
+							},
+							{
+								"red-0",
+								{ .on = { { "TIMER", "green" } } }
+							}
+						}
+					}
+				},
 			}
 		}
 	};
