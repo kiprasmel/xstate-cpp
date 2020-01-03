@@ -2,6 +2,12 @@
 
 I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 
+## Features
+
+* Basic stuff (I dunno I'm new here I just wanted a state machine for myself ☃)
+* Nested state machines just landed in by #5 - see [./xstate.cpp](./xstate.cpp) for an example.
+* Others coming in real soon. Actually, even sooner, if you wanna contribute:P
+
 ## Installation
 
 You only need the [`xstate.h`](./xstate.h) header file - that's it.
@@ -83,13 +89,13 @@ int main() {
 compile with:
 
 ```sh
-g++ -std=c++11 
+g++ -std=c++17 
 ```
 
 for example,
 
 ```sh
-g++ -std=c++11 ./xstate.cpp -o xstate.out
+g++ -std=c++17 ./xstate.cpp -o xstate.out
 ```
 
 ## License
