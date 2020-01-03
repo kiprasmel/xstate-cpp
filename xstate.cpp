@@ -282,6 +282,12 @@ int main() {
 
 	toggleMachine->send("TIMER");
 
+	toggleMachine->send("TIMER");
+
+	toggleMachine->send("TIMER");
+
+	toggleMachine->send("TIMER");
+
 	toggleMachine->stop();
 
 	delete toggleMachine;
