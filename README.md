@@ -10,7 +10,7 @@ I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 
 ## Installation
 
-You need to compile all the `.cpp` files - makefile coming soon.
+You need to compile all the `.cpp` files - makefile [coming soon](https://github.com/sarpik/xstate-cpp/issues/7).
 
 * platformio
 
@@ -99,7 +99,7 @@ int main() {
 compile with:
 
 ```sh
-g++ -std=c++17 
+g++ -std=c++17
 ```
 
 for example,
