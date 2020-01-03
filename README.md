@@ -116,11 +116,6 @@ g++ -std=c++17 ./src/*.cpp ./example.cpp -o example.out
 
 I use [./src/go](./src/go)
 
-## Takeaways & learnings
-
-Definitely do NOT put a constant char pointer array in a header file.
-Fucking hell
-
 ## License
 
 [MIT](./LICENSE) © [Kipras Melnikovas](https://github.com/sarpik)
