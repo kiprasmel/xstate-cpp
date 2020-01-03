@@ -73,12 +73,11 @@ int main() {
     ->onStart([]() {
       printf("let's go!\n");
     })
-    ->onTransition([]() {
-      printf("yay we transitioned!\n");
-    })
-    ->onStop([](Interpreter *self) {
-      printf("oh no we stopped c:\n");
+    ->onTransition([](Interpreter *self) {
       self->logInfo();
+    })
+    ->onStop([]() {
+      printf("oh no we stopped c:\n");
     })
     ->start();
 
