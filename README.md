@@ -105,8 +105,16 @@ g++ -std=c++17
 for example,
 
 ```sh
-g++ -std=c++17 ./xstate.cpp -o xstate.out
+g++ -std=c++17 ./src/*.cpp ./example.cpp -o example.out
 ```
+
+& run with
+
+```sh
+./example.out
+```
+
+I use [./src/go](./src/go)
 
 ## Takeaways & learnings
 
