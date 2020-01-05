@@ -9,7 +9,6 @@
 		"maintainer": true
 	},
 	"dependencies": {
-		"name": "StandardCplusplus"
 	},
 	"repository": {
 		"type": "git",
