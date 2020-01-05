@@ -46,8 +46,10 @@ obviously, you subsitute the `example.cpp` with your own source files & get some
 See also [./example.cpp](./example.cpp)
 
 ```cpp
+#include <iostream>
 #include "xstate.h"
 
+using namespace std;
 using namespace xs;
 
 int main() {
@@ -73,13 +75,13 @@ int main() {
   Interpreter *toggleMachine = interpret(machine)
     ->logInfo()
     ->onStart([]() {
-      printf("let's go!\n");
+      cout << "let's go!\n";
     })
     ->onTransition([](Interpreter *self) {
       self->logInfo();
     })
     ->onStop([]() {
-      printf("oh no we stopped c:\n");
+      cout << "oh no we stopped c:\n";
     })
     ->start();
 
