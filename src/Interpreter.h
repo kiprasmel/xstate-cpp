@@ -19,13 +19,11 @@ struct InterpreterState {
 };
 
 struct Interpreter {
-	private:
 	InterpreterStatus status      ;
 
 	InterpreterState *state       ;
 	StateMachine     *stateMachine;
 
-	public:
 	Interpreter(StateMachine *stateMachine);
 
 	const char  *getStatusStr() const;
