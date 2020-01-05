@@ -23,6 +23,7 @@ For everything else, you need to compile all `.cpp` files - makefile [coming soo
 ```sh
 git submodules add https://github.com/sarpik/xstate-cpp.git
 # or:  git submodules add git@github.com/sarpik/xstate-cpp.git
+
 git submodules update --init --recursive
 
 g++ -std=c++11 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
@@ -39,7 +40,7 @@ g++ -std=c++11 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
 ./example.out
 ```
 
-obviously, you subsitute the `example.cpp` with your own source files & get some spicy state machines.
+obviously, you subsitute `example.cpp` with your own source files & get some spicy state machines. 🌶
 
 ## Usage
 
