@@ -8,12 +8,21 @@
 		"url": "https://kipras.org",
 		"maintainer": true
 	},
+	"license": "MIT",
 	"dependencies": {
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/sarpik/xstate-cpp.git"
 	},
+	"homepage": "https://github.com/sarpik/xstate-cpp",
+	"downloadUrl": "https://github.com/sarpik/xstate-cpp/archive/master.zip",
 	"frameworks": "*",
-	"platforms": "*"
+	"platforms": "*",
+	"examples": [
+		"./example.cpp"
+	],
+	"build": {
+		"flags": ["PLATFORMIO"]
+	}
 }
