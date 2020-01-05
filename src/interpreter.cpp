@@ -29,7 +29,19 @@ Interpreter *Interpreter::send(const char *event) {
 			this->getStatusStr()
 		);
 
-		throw;
+		/**
+		 * platformio isn't happy about error handling somehow
+		 *
+		 * also, I did not find any official statement that this flag gets set -
+		 * it just works 🤷‍♀️
+		 *
+		 * To check yourself, compile with `-D PLATFORMIO`
+		 */
+		#ifdef PLATFORMIO
+			/** skip */
+		#else
+			throw;
+		#endif
 	}
 
 	const char *nextState = this->stateMachine->transition(this->state->value, event);
