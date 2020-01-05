@@ -10,11 +10,13 @@ I needed [xstate](https://github.com/davidkpiano/xstate) in C++. Here we are
 
 ## Installation
 
-You need to compile all the `.cpp` files - makefile [coming soon](https://github.com/sarpik/xstate-cpp/issues/7).
-
 * platformio
 
-> SOON
+```sh
+platformio lib install --save XState-cpp
+```
+
+For everything else, you need to compile all `.cpp` files - makefile [coming soon](https://github.com/sarpik/xstate-cpp/issues/7).
 
 * git + submodules
 
