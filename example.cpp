@@ -13,6 +13,7 @@ g++ -std=c++11 ./example.cpp ./src/*.cpp -o example.out
  *
 */
 
+#include <iostream> // std::cout
 #include "./src/xstate.cpp"
 
 int main() {
@@ -54,13 +55,13 @@ int main() {
 	xs::Interpreter *toggleMachine = xs::interpret(machine)
 		->logInfo()
 		->onStart([]() {
-			printf("let's go!\n");
+			std::cout << "let's go!\n";
 		})
 		->onTransition([](xs::Interpreter *self) {
 			self->logInfo();
 		})
 		->onStop([]() {
-			printf("oh no we stopped c:\n");
+			std::cout << "oh no we stopped c:\n";
 		})
 		->start();
 
