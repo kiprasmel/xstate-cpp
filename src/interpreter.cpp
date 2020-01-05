@@ -1,6 +1,7 @@
 #include <cstdio>
 
 #include "Interpreter.h"
+#include "stringUtils.h"
 
 namespace xs {
 
