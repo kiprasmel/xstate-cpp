@@ -1,3 +1,5 @@
+#include <cstdio>
+
 #include "Interpreter.h"
 
 namespace xs {
