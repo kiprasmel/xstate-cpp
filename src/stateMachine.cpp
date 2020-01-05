@@ -1,27 +1,25 @@
-//#include <cstdio>
+#include <vector>
+#include <string>
 
 #include "xstate.h"
-#include "SplitStr.h"
+#include "stringUtils.h"
 
 namespace xs {
 
-const char *InterpreterStatusStrings[] = { "notStarted", "started", "stopped" };
+std::string InterpreterStatusStrings[] = { "notStarted", "started", "stopped" };
 
-const char *StateMachine::transition(const char *currentState, const char *event)
-{
+/**
+ * @note this might return an empty string ("")
+ * IF the next state during the event was not defined.
+ */
+std::string StateMachine::transition(std::string currentState, std::string event) {
 	std::vector<std::string> stateAccessTokens = splitStr(currentState, '.');
-
-	// printf("num of tokens %d\n", stateAccessTokens.size());
-
-	// for (auto &token : stateAccessTokens) {
-	// 	printf("token %s\n", token.c_str());
-	// }
 
 	StateMachine *head = this;
 
 	/** go deeper & traverse */
 	for (size_t i = 0; i + 1 < stateAccessTokens.size(); ++i) {
-		const char *stateToken = stateAccessTokens[i].c_str();
+		std::string stateToken = stateAccessTokens[i];
 		head = &head->states[stateToken].nested;
 	}
 
@@ -29,16 +27,9 @@ const char *StateMachine::transition(const char *currentState, const char *event
 	std::string lastStateAccessToken = stateAccessTokens[lastIndex];
 
 	/**
-	 * HALP FIXME
-	 *
-	 * lmfao I spent way too much time here
-	 *
-	 * don't use `const char *` for indexing for sure.
-	 *
+	 * @note this will be an empty string ("") if next state does not exist.
 	*/
-	const char *nextState = head->states[lastStateAccessToken].on[event];
-
-	// printf("nextState %s\n", nextState);
+	std::string nextState = head->states[lastStateAccessToken].on[event];
 
 	return nextState;
 }

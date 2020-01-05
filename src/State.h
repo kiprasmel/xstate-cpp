@@ -7,7 +7,7 @@
 namespace xs {
 
 struct State {
-	std::map<const char *, const char *> on;
+	std::map<std::string , std::string > on;
 	StateMachine nested;
 };
 

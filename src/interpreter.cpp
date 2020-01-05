@@ -1,4 +1,5 @@
-#include <cstdio>
+#include <iostream>
+#include <string>
 
 #include "Interpreter.h"
 #include "stringUtils.h"
@@ -13,22 +14,24 @@ Interpreter::Interpreter(StateMachine *stateMachine)
 {
 }
 
-const char *Interpreter::getStatusStr() const {
+std::string Interpreter::getStatusStr() const {
 	return InterpreterStatusStrings[this->status];
 }
 
 Interpreter *Interpreter::logInfo() {
-	printf("status = %d (%s) | state = %s \n", this->status, this->getStatusStr(), this->state->value);
+	std::cout << "status = " << this->status
+		<< " (" << this->getStatusStr() << ")"
+		<< " | state = " << this->state->value
+		<< "\n";
+
 	return this;
 }
 
-Interpreter *Interpreter::send(const char *event) {
+Interpreter *Interpreter::send(std::string event) {
 	if (this->status != started) {
-		fprintf(
-			stderr,
-			"\nERR interpreter.send was called when it was not started / stopped (%s).\n",
-			this->getStatusStr()
-		);
+		std::cerr << "\nERR interpreter.send was called when it was not started / stopped"
+			<< " (" << this->getStatusStr() << ")."
+			<< "\n";
 
 		/**
 		 * platformio isn't happy about error handling somehow
@@ -45,7 +48,7 @@ Interpreter *Interpreter::send(const char *event) {
 		#endif
 	}
 
-	const char *nextState = this->stateMachine->transition(this->state->value, event);
+	std::string nextState = this->stateMachine->transition(this->state->value, event);
 	// printf("nextState %s\n", nextState);
 
 	/**
@@ -53,8 +56,10 @@ Interpreter *Interpreter::send(const char *event) {
 		* when the state didn't have any handlers for that specific event,
 		* thus we just skip it, since that's allowed.
 		*/
-	if (nextState != NULL) {
+	if (nextState != "") {
 		this->state->value = nextState;
+	} else {
+		std::cout << "got empty state\n";
 	}
 
 	this->handleOnTransition();

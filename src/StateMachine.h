@@ -1,15 +1,17 @@
 #pragma once
 
+#include <string>
+
 #include "States.h"
 
 namespace xs {
 
 struct StateMachine {
-	const char *id;
-	const char *initial;
+	std::string id;
+	std::string initial;
 	States states;
 
-	const char *transition(const char *currentState, const char *event);
+	std::string transition(std::string currentState, std::string event);
 };
 
 }; // namespace xs

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <functional>
 
 #include "xstate.h"
@@ -12,10 +13,10 @@ enum InterpreterStatus {
 	stopped
 };
 
-extern const char *InterpreterStatusStrings[];
+extern std::string InterpreterStatusStrings[];
 
 struct InterpreterState {
-	const char *value;
+	std::string value;
 };
 
 struct Interpreter {
@@ -26,12 +27,12 @@ struct Interpreter {
 
 	Interpreter(StateMachine *stateMachine);
 
-	const char  *getStatusStr() const;
+	std::string  getStatusStr() const;
 	Interpreter *logInfo     ()      ;
 
 	/** handlers */
 	Interpreter *start(                 );
-	Interpreter *send (const char *event);
+	Interpreter *send (std::string event);
 	Interpreter *stop (                 );
 
 	private:
