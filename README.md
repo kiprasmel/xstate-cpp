@@ -23,7 +23,7 @@ git submodules add https://github.com/sarpik/xstate-cpp.git
 # or:  git submodules add git@github.com/sarpik/xstate-cpp.git
 git submodules update --init --recursive
 
-g++ -std=c++17 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
+g++ -std=c++11 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
 ./example.out
 ```
 
@@ -33,7 +33,7 @@ g++ -std=c++17 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
 git clone https://github.com/sarpik/xstate-cpp.git
 # or:  git clone git@github.com:sarpik/xstate-cpp.git
 
-g++ -std=c++17 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
+g++ -std=c++11 ./xstate-cpp/src/*.cpp ./xstate-cpp/example.cpp -o example.out
 ./example.out
 ```
 
@@ -98,13 +98,13 @@ int main() {
 compile with:
 
 ```sh
-g++ -std=c++17
+g++ -std=c++11
 ```
 
 for example,
 
 ```sh
-g++ -std=c++17 ./src/*.cpp ./example.cpp -o example.out
+g++ -std=c++11 ./src/*.cpp ./example.cpp -o example.out
 ```
 
 & run with

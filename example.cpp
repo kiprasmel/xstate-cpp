@@ -8,7 +8,7 @@
  * compile with:
  *
  * ```sh
-g++ -std=c++17 ./example.cpp ./src/*.cpp -o example.out
+g++ -std=c++11 ./example.cpp ./src/*.cpp -o example.out
  * ```
  *
 */
