@@ -117,7 +117,7 @@ g++ -std=c++11 ./src/*.cpp ./example.cpp -o example.out
 ./example.out
 ```
 
-I use [./src/go](./src/go)
+I use [./go](./go)
 
 ## License
 
