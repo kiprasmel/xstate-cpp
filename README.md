@@ -73,6 +73,8 @@ int main() {
     }
   };
 
+    TODO get rid of pointers
+
   Interpreter *toggleMachine = interpret(machine)
     ->logInfo()
     ->onStart([]() {
@@ -121,5 +123,10 @@ g++ -std=c++11 ./src/*.cpp ./example.cpp -o example.out
 I use [./go](./go)
 
 ## License
+
+TODO new interpreter;
+TODO default functions for onXyz
+TODO dezute as pointer
+TODO no more pointers / new's pls!
 
 [MIT](./LICENSE) © [Kipras Melnikovas](https://github.com/sarpik)
