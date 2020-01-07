@@ -17,34 +17,24 @@ g++ -std=c++11 ./example.cpp ./src/*.cpp -o example.out
 #include "./src/xstate.cpp"
 
 int main() {
+	try {
 	xs::StateMachine machine = {
 		.id = "light",
-		.initial = "green",
+		// .type = "parallel", /** TODO implement lol */
+		.initial = "bold",
 		.states = {
 			{
-				"green" ,
-				{ .on = { { "TIMER", "yellow" } } }
-			},
-			{
-				"yellow",
-				{ .on = { { "TIMER", "red"    } } }
-			},
-			{
-				"red"  ,
+				"bold"   ,
 				{
-					.on = { { "TIMER", "red.red-100"  } },
-					.nested = {
-						.id = "red-brightness",
-						.initial = "red-100",
-						.states = {
-							{
-								"red-100",
-								{ .on = { { "TIMER", "red.red-0" } } }
-							},
-							{
-								"red-0",
-								{ .on = { { "TIMER", "green" } } }
-							}
+					.initial = "off",
+					.states = {
+						{
+							"on",
+							{ .on = { { "TOGGLE_BOLD", "off" } } }
+						},
+						{
+							"off",
+							{ .on = { { "TOGGLE_BOLD", "on" } } }
 						}
 					}
 				}
@@ -65,21 +55,25 @@ int main() {
 		})
 		->start();
 
-	toggleMachine->send("TIMER");
+	toggleMachine->send("bold.TOGGLE_BOLD"); // ??
 
-	toggleMachine->send("TIMER");
+	toggleMachine->send("TOGGLE_BOLD");
 
-	toggleMachine->send("TIMER");
+	toggleMachine->send("TOGGLE_BOLD");
 
-	toggleMachine->send("TIMER");
+	// toggleMachine->send("TIMER");
 
-	toggleMachine->send("TIMER");
+	// toggleMachine->send("TIMER");
 
-	toggleMachine->send("TIMER");
+	// toggleMachine->send("TIMER");
 
-	toggleMachine->stop();
+	// toggleMachine->stop();
 
 	delete toggleMachine;
+	}
+	catch (const char* message) {
+		std::cerr << "\nERR: " << message;
+	}
 
 	return 0;
 }

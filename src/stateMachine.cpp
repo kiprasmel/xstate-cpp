@@ -20,7 +20,7 @@ std::string StateMachine::transition(std::string currentState, std::string event
 	/** go deeper & traverse */
 	for (size_t i = 0; i + 1 < stateAccessTokens.size(); ++i) {
 		std::string stateToken = stateAccessTokens[i];
-		head = &head->states[stateToken].nested;
+		head = &head->states[stateToken]; // .nested;
 	}
 
 	const int lastIndex = stateAccessTokens.size() - 1;
