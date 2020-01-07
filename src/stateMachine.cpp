@@ -12,7 +12,7 @@ std::string InterpreterStatusStrings[] = { "notStarted", "started", "stopped" };
  * @note this might return an empty string ("")
  * IF the next state during the event was not defined.
  */
-std::string StateMachine::transition(std::string currentState, std::string event) {
+StateMachineState StateMachine::transition(std::string currentState, std::string event) {
 	std::vector<std::string> stateAccessTokens = splitStr(currentState, '.');
 
 	StateMachine *head = this;
@@ -20,7 +20,7 @@ std::string StateMachine::transition(std::string currentState, std::string event
 	/** go deeper & traverse */
 	for (size_t i = 0; i + 1 < stateAccessTokens.size(); ++i) {
 		std::string stateToken = stateAccessTokens[i];
-		head = &head->states[stateToken].nested;
+		head = &head->states[stateToken];
 	}
 
 	const int lastIndex = stateAccessTokens.size() - 1;
@@ -31,7 +31,8 @@ std::string StateMachine::transition(std::string currentState, std::string event
 	*/
 	std::string nextState = head->states[lastStateAccessToken].on[event];
 
-	return nextState;
+	head->state.value = nextState;
+	return head->state;
 }
 
 }; // namespace xs
