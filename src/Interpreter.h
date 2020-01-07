@@ -15,14 +15,9 @@ enum InterpreterStatus {
 
 extern std::string InterpreterStatusStrings[];
 
-struct InterpreterState {
-	std::string value;
-};
-
 struct Interpreter {
 	InterpreterStatus status      ;
 
-	InterpreterState *state       ;
 	StateMachine     *stateMachine;
 
 	Interpreter(StateMachine *stateMachine);

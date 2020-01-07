@@ -17,69 +17,98 @@ g++ -std=c++11 ./example.cpp ./src/*.cpp -o example.out
 #include "./src/xstate.cpp"
 
 int main() {
-	xs::StateMachine machine = {
+	try {
+	xs::StateMachine* machine = new xs::StateMachine({
 		.id = "light",
-		.initial = "green",
+		// .type = "parallel", /** TODO implement lol */
+		// .initial = "bold",
 		.states = {
 			{
-				"green" ,
-				{ .on = { { "TIMER", "yellow" } } }
-			},
-			{
-				"yellow",
-				{ .on = { { "TIMER", "red"    } } }
-			},
-			{
-				"red"  ,
+				"bold"   ,
 				{
-					.on = { { "TIMER", "red.red-100"  } },
-					.nested = {
-						.id = "red-brightness",
-						.initial = "red-100",
-						.states = {
-							{
-								"red-100",
-								{ .on = { { "TIMER", "red.red-0" } } }
-							},
-							{
-								"red-0",
-								{ .on = { { "TIMER", "green" } } }
-							}
+					.initial = "off",
+					.states = {
+						{
+							"on",
+							{ .on = { { "TOGGLE_BOLD", "off" } } }
+						},
+						{
+							"off",
+							{ .on = { { "TOGGLE_BOLD", "on" } } }
+						}
+					}
+				}
+			},
+			{
+				"underline",
+				{
+					.initial = "off",
+					.states = {
+						{
+							"on",
+							{ .on = { { "TOGGLE_UNDERLINE", "off" } } }
+						},
+						{
+							"off",
+							{ .on = { { "TOGGLE_UNDERLINE", "on" } } }
 						}
 					}
 				}
 			}
 		}
-	};
+	});
 
-	xs::Interpreter *toggleMachine = xs::interpret(machine)
-		->logInfo()
-		->onStart([]() {
-			std::cout << "let's go!\n";
-		})
-		->onTransition([](xs::Interpreter *self) {
-			self->logInfo();
-		})
-		->onStop([]() {
-			std::cout << "oh no we stopped c:\n";
-		})
-		->start();
+	xs::Interpreter* tm = xs::interpret(machine);
 
-	toggleMachine->send("TIMER");
+	std::cout << "test\n";
 
-	toggleMachine->send("TIMER");
+	// machine->transition("bold.off", "TOGGLE_BOLD");
 
-	toggleMachine->send("TIMER");
+	// machine->transition("underline.off", "TOGGLE_UNDERLINE");
 
-	toggleMachine->send("TIMER");
+	// std::cout << "\nvalue: " << machine->state.value << "\n";
 
-	toggleMachine->send("TIMER");
+	// xs::Interpreter *tm = xs::interpret(machine)
+	// 	->onTransition([](xs::Interpreter *self) {
+	// 		self->logInfo();
+	// 	});
 
-	toggleMachine->send("TIMER");
+	// tm->transition("bold.off", "TOGGLE_BOLD");
 
-	toggleMachine->stop();
+	// tm->transition("underline.off", "TOGGLE_UNDERLINE");
 
-	delete toggleMachine;
+	/** */
+
+	// xs::Interpreter *toggleMachine = xs::interpret(machine) ->logInfo()
+	//  ->onStart([]() {std::cout << "let's go!\n";
+	//  })
+	//  ->onTransition([](xs::Interpreter *self) {self->logInfo();
+	//  })
+	//  ->onStop([]() {std::cout << "oh no we stopped c:\n";
+	//  })
+	//  ->start();
+
+	// toggleMachine->send("bold.TOGGLE_BOLD"); // ??
+
+	// toggleMachine->send("TOGGLE_BOLD");
+
+	// toggleMachine->send("TOGGLE_BOLD");
+
+	// toggleMachine->send("TIMER");
+
+	// toggleMachine->send("TIMER");
+
+	// toggleMachine->send("TIMER");
+
+	// toggleMachine->stop();
+
+	// delete toggleMachine;
+	}
+	catch (const char* message) {
+		std::cerr << "\nERR: " << message;
+	}
+
+	std::cout << "\ndone\n";
 
 	return 0;
 }

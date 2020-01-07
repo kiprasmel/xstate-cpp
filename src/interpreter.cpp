@@ -9,7 +9,7 @@ namespace xs {
 Interpreter::Interpreter(StateMachine *stateMachine)
 	:
 	stateMachine(stateMachine),
-	state(new InterpreterState({ .value = stateMachine->initial})),
+	// state(new InterpreterState({ .value = stateMachine->initial})),
 	status(notStarted)
 {
 }
@@ -21,7 +21,7 @@ std::string Interpreter::getStatusStr() const {
 Interpreter *Interpreter::logInfo() {
 	std::cout << "status = " << this->status
 		<< " (" << this->getStatusStr() << ")"
-		<< " | state = " << this->state->value
+		<< " | state = " << this->stateMachine->state.value
 		<< "\n";
 
 	return this;
@@ -48,7 +48,7 @@ Interpreter *Interpreter::send(std::string event) {
 		#endif
 	}
 
-	std::string nextState = this->stateMachine->transition(this->state->value, event);
+	std::string nextState = this->stateMachine->transition(this->stateMachine->state.value, event);
 	// printf("nextState %s\n", nextState);
 
 	/**
@@ -57,7 +57,7 @@ Interpreter *Interpreter::send(std::string event) {
 		* thus we just skip it, since that's allowed.
 		*/
 	if (nextState != "") {
-		this->state->value = nextState;
+		this->stateMachine->state.value = nextState;
 	} else {
 		std::cout << "got empty state\n";
 	}
