@@ -20,7 +20,7 @@
 	"frameworks": "*",
 	"platforms": "*",
 	"examples": [
-		"./example.cpp"
+		"example.cpp"
 	],
 	"build": {
 		"flags": ["PLATFORMIO"]
