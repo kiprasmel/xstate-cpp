@@ -16,3 +16,42 @@ std::vector<std::string> splitStr(std::string str = "", const char delim = ' ') 
 
 	return tokens;
 }
+
+/** reverse `splitStr` */
+std::string joinStr(std::vector<std::string> tokens, const char delim = ' ') {
+	std::string str = "";
+
+	for (size_t i = 0; i < tokens.size(); ++i) {
+		const std::string& buf = tokens[i];
+
+		str += buf;
+
+		if (i < tokens.size() - 1) {
+			str += delim;
+		}
+	}
+
+	return str;
+}
+
+std::string deepifyStr(std::string str, const size_t depth, const char deepening_str, const size_t single_amount) {
+	// return std::string(depth * single_amount, deepening_str) + str;
+	size_t depthAmount = depth * single_amount;
+	std::string prefix = std::string(depthAmount, deepening_str);
+	std::string deepifiedStr = prefix + str;
+
+	return deepifiedStr;
+}
+
+/** string with newlines */
+std::string deepifyRStr(std::string rstr, size_t depth, const char delim) {
+	std::vector<std::string> strs = splitStr(rstr, delim);
+
+	for (std::string& str : strs) {
+		str = deepifyStr(str, depth);
+	}
+
+	std::string deepifiedStr = joinStr(strs, delim);
+
+	return deepifiedStr;
+}
