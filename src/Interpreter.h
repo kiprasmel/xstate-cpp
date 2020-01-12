@@ -15,43 +15,48 @@ enum InterpreterStatus {
 
 extern std::string InterpreterStatusStrings[];
 
-struct InterpreterState {
-	std::string value;
-};
-
 struct Interpreter {
-	InterpreterStatus status      ;
+	StateMachine      stateMachine;
 
-	InterpreterState *state       ;
-	StateMachine     *stateMachine;
+	InterpreterStatus       status;
 
+	Interpreter(StateMachine  stateMachine);
 	Interpreter(StateMachine *stateMachine);
 
-	std::string  getStatusStr() const;
-	Interpreter *logInfo     ()      ;
+	std::string getStatusStr() const;
+	Interpreter logInfo     () const;
 
 	/** handlers */
-	Interpreter *start(                 );
-	Interpreter *send (std::string event);
-	Interpreter *stop (                 );
+	Interpreter start(                 );
+	Interpreter send (std::string event);
+	Interpreter stop (                 );
 
+	/**
+	 * These `handleOnXyz` functions are private & with a default value
+	 * since we inject them through `onXyz`
+	 * and then use them inside `xyz`.
+	 *
+	 * for example,
+	 * we inject `handleOnStart` (`handleOnStart = []() { ... }`) from `onStart`
+	 * and then call it inside `start`.
+	 *
+	 */
 	private:
-	std::function<const void()> handleOnStart     ;
-	std::function<const void()> handleOnTransition;
-	std::function<const void()> handleOnStop      ;
+	std::function<const void(const Interpreter self)> handleOnStart      = [](const Interpreter self) {};
+	std::function<const void(const Interpreter& self)> handleOnTransition = [](const Interpreter self) {};
+	std::function<const void(const Interpreter& self)> handleOnStop       = [](const Interpreter self) {};
 
 	public:
-	Interpreter *onStart     (const std::function<const void(                 )> callback);
-	Interpreter *onStart     (const std::function<const void(Interpreter *self)> callback);
+	// Interpreter& onStart     (const std::function<const void(                 )> callback);
+	Interpreter onStart     (const std::function<void(const Interpreter self)> callback);
 
-	Interpreter *onTransition(const std::function<const void(                 )> callback);
-	Interpreter *onTransition(const std::function<const void(Interpreter *self)> callback);
+	Interpreter onTransition(const std::function<const void(                 )> callback);
+	Interpreter onTransition(const std::function<const void(const Interpreter self)> callback);
 
-	Interpreter *onStop      (const std::function<const void(                 )> callback);
-	Interpreter *onStop      (const std::function<const void(Interpreter *self)> callback);
+	Interpreter onStop      (const std::function<const void(                 )> callback);
+	Interpreter onStop      (const std::function<const void(const Interpreter self)> callback);
 };
 
-Interpreter *interpret(StateMachine  stateMachine);
-Interpreter *interpret(StateMachine *stateMachine);
+Interpreter interpret(StateMachine stateMachine);
 
 } // namespace xs
