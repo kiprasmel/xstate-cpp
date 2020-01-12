@@ -73,6 +73,8 @@ int main() {
     }
   };
 
+    TODO get rid of pointers
+
   Interpreter *toggleMachine = interpret(machine)
     ->logInfo()
     ->onStart([]() {
@@ -121,5 +123,35 @@ g++ -std=c++11 ./src/*.cpp ./example.cpp -o example.out
 I use [./go](./go)
 
 ## License
+
+TODO new interpreter;
+TODO default functions for onXyz
+TODO dezute as pointer
+TODO no more pointers / new's pls!
+TODO get rid of duplicate state re-assigning logic @ interpreter.send
+TODO allow user choosing between *, & and copy in the `onXyz` methods
+TODO maybe figure out if we can avoid the closure lock in the `handleOnXyz` & it's callback
+TODO allow creating both * and copy through `interpret`
+
+TODO Rename all `[Ss]tateMachine` to `[Mm]achine`
+
+TODO Syntax change (creation)!
+
+TODO make `do_xyz` all take const Interpreter& as args
+TODO merge `do_xyz` with `onDo_xyz` @ interpreter
+TODO instead of passing in the interpreter in the callbacks, pass in the machine's state instead to align with xstate's api
+
+TODO Create struct `MachineConfig` & use it to take it as a parameter for configuration @ `StateMachine` yoooo
+
+TODO validate that the initial state has somewhere to go or error
+
+TODO test cases for various situations
+* no event
+* wrong event
+* correct event, wrong next state
+* etc
+
+TODO [history state machines](https://github.com/davidkpiano/xstate#history-states) (holy shit)
+
 
 [MIT](./LICENSE) © [Kipras Melnikovas](https://github.com/sarpik)
