@@ -1,5 +1,13 @@
 #!/usr/bin/env sh
+# go
 
-PROGNAME="${1:-"example"}"
+#
+# usage:
+# ./go [args to g++]
+#
 
-g++ -std=c++11 ./src/*.cpp ./"$PROGNAME".cpp -o "$PROGNAME".out && ./"$PROGNAME".out
+#PROGNAME="${1:-"example"}"
+PROGNAME="sioko.example"
+
+# -Wall -Wextra -Wpedantic
+g++ -std=c++2a -g ./src/*.cpp ./"$PROGNAME".cpp -o "$PROGNAME".out $* && ./"$PROGNAME".out
