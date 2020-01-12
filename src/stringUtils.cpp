@@ -4,7 +4,13 @@
 #include <string>
 #include <sstream>
 
-std::vector<std::string> splitStr(std::string str = "", const char delim = ' ') {
+/**
+ * split a single string into an array of string tokens
+ * opposite of `joinStr`
+ *
+ * TODO format
+ */
+std::vector<std::string> splitStr(std::string str, const char delim) {
     std::string buf;                 // Have a buffer string
     std::stringstream ss(str);       // Insert the string into a stream
 
