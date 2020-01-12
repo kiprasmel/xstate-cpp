@@ -22,3 +22,23 @@ std::vector<std::string> splitStr(std::string str, const char delim) {
 
 	return tokens;
 }
+
+/**
+ * join an array of string tokens into a single string
+ * opposite of `splitStr`
+ */
+std::string joinStr(std::vector<std::string> tokens, const char delim) {
+	std::string str = "";
+
+	for (size_t i = 0; i < tokens.size(); ++i) {
+		const std::string& buf = tokens[i];
+
+		str += buf;
+
+		if (i < tokens.size() - 1) {
+			str += delim;
+		}
+	}
+
+	return str;
+}
