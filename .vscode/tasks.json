@@ -8,12 +8,12 @@
 							/**
 				 			* https://stackoverflow.com/a/59236875/9285308
 				 			*/
-                "-g",
-                "${file}",
+							"-g",
+							"${file}",
 							"${fileDirname}/src/*.cpp",
 							"${fileDirname}/src/*.h",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+							"-o",
+							"${fileDirname}/${fileBasenameNoExtension}.out"
             ],
             "options": {
                 "cwd": "/usr/bin"
