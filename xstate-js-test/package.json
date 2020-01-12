@@ -1,0 +1,10 @@
+{
+  "name": "xstate-js-test",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Kipras Melnikovas <kipras@kipras.org> (https://kipras.org/)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "xstate": "^4.7.6"
+  }
+}
