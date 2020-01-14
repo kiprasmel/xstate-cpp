@@ -10,4 +10,4 @@
 PROGNAME="sioko.example"
 
 # -Wall -Wextra -Wpedantic
-g++ -std=c++11 -g ./src/*.cpp ./"$PROGNAME".cpp -o "$PROGNAME".out $* && ./"$PROGNAME".out
+g++ -std=c++2a -g ./src/*.cpp ./"$PROGNAME".cpp -o "$PROGNAME".out $* && ./"$PROGNAME".out
