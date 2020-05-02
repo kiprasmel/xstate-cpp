@@ -1,0 +1,135 @@
+status = 1 (started) | state = pradine
+teststatus = 1 (started) | state = pirmyn_mato
+status = 1 (started) | state = pirmyn_mato
+teststatus = 1 (started) | state = pirmyn_nebemato
+teststatus = 1 (started) | state = kairen_mato
+status = 1 (started) | state = kairen_mato
+teststatus = 1 (started) | state = kairen_nebemato
+teststatus = 1 (started) | state = desinen_mato
+state.val = desinen_mato
+teststatus = 1 (started) | state = pirmyn_mato
+teststatus = 1 (started) | state = linija_uzrakinta
+status = 1 (started) | state = linija_uzrakinta
+teststatus = 1 (started) | state = linija_atrakinta
+teststatus = 1 (started) | state = pirmyn_mato
+state.val = pirmyn_mato
+teststatus = 1 (started) | state = pirmyn_nebemato
+
+{  
+  .id = roboto-busena,
+  .state = {  
+    .value = pirmyn_nebemato
+  },
+  .states = {  
+    {
+      desinen_mato,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze },
+          { RIGHT_NO_SEE, desinen_nebemato }
+        }
+      }
+    },
+    {
+      desinen_nebemato,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LEFT_SEE, kairen_mato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze },
+          { RIGHT_SEE, desinen_mato }
+        }
+      }
+    },
+    {
+      kairen_mato,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LEFT_NO_SEE, kairen_nebemato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze }
+        }
+      }
+    },
+    {
+      kairen_nebemato,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LEFT_SEE, kairen_mato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze },
+          { RIGHT_SEE, desinen_mato }
+        }
+      }
+    },
+    {
+      linija_atrakinta,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LEFT_SEE, kairen_mato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze },
+          { RIGHT_SEE, desinen_mato }
+        }
+      }
+    },
+    {
+      linija_uzrakinta,
+      {  
+        .on = {  
+          { LINE_UNLOCK, linija_atrakinta },
+          { PAUSE, pauze }
+        }
+      }
+    },
+    {
+      pauze,
+      {  
+        .on = {  
+          { UNPAUSE, pirmyn_nebemato }
+        }
+      }
+    },
+    {
+      pirmyn_mato,
+      {  
+        .on = {  
+          { FORWARD_NO_SEE, pirmyn_nebemato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze }
+        }
+      }
+    },
+    {
+      pirmyn_nebemato,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LEFT_SEE, kairen_mato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze },
+          { RIGHT_SEE, desinen_mato }
+        }
+      }
+    },
+    {
+      pradine,
+      {  
+        .on = {  
+          { FORWARD_SEE, pirmyn_mato },
+          { LEFT_SEE, kairen_mato },
+          { LINE_LOCK, linija_uzrakinta },
+          { PAUSE, pauze },
+          { RIGHT_SEE, desinen_mato }
+        }
+      }
+    }
+  }
+}
+status = 2 (stopped) | state = pirmyn_nebemato
