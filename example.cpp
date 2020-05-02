@@ -18,68 +18,73 @@ g++ -std=c++11 ./example.cpp ./src/*.cpp -o example.out
 
 int main() {
 	xs::StateMachine machine = {
-		.id = "light",
-		.initial = "green",
-		.states = {
+		id: "light",
+		state: { value: "green" },
+		on: {},
+		states: {
 			{
 				"green" ,
-				{ .on = { { "TIMER", "yellow" } } }
+				{ on: { { "TIMER", "yellow" } } }
 			},
 			{
 				"yellow",
-				{ .on = { { "TIMER", "red"    } } }
+				{ on: { { "TIMER", "red"    } } }
 			},
 			{
 				"red"  ,
 				{
-					.on = { { "TIMER", "red.red-100"  } },
-					.nested = {
-						.id = "red-brightness",
-						.initial = "red-100",
-						.states = {
+					state: { value: "walk" },
+
+					on: { { "TIMER", "green"  } },
+
+					states: {
 							{
-								"red-100",
-								{ .on = { { "TIMER", "red.red-0" } } }
+								"walk",
+								{ on: { { "PED_TIMER", "wait" } } }
 							},
 							{
-								"red-0",
-								{ .on = { { "TIMER", "green" } } }
+								"wait",
+								{ on: { { "PED_TIMER", "stop" } } }
+							},
+							{
+								"stop",
+								{}
 							}
-						}
-					}
+					},
+
 				}
 			}
 		}
 	};
 
-	xs::Interpreter *toggleMachine = xs::interpret(machine)
-		->logInfo()
-		->onStart([]() {
+	xs::Interpreter toggleMachine = xs::interpret(machine)
+		.logInfo()
+		.onStart([]() {
 			std::cout << "let's go!\n";
 		})
-		->onTransition([](xs::Interpreter *self) {
-			self->logInfo();
+		.onTransition([](xs::Interpreter self) {
+			self.logInfo();
 		})
-		->onStop([]() {
+		.onStop([]() {
 			std::cout << "oh no we stopped c:\n";
 		})
-		->start();
+		.start();
 
-	toggleMachine->send("TIMER");
+	toggleMachine.send("TIMER");
 
-	toggleMachine->send("TIMER");
+	toggleMachine.send("TIMER");
 
-	toggleMachine->send("TIMER");
+	toggleMachine.send("PED_TIMER");
 
-	toggleMachine->send("TIMER");
+	toggleMachine.send("TIMER");
 
-	toggleMachine->send("TIMER");
+	toggleMachine.send("TIMER");
 
-	toggleMachine->send("TIMER");
+	toggleMachine.send("TIMER");
 
-	toggleMachine->stop();
+	toggleMachine.send("TIMER");
 
-	delete toggleMachine;
+	toggleMachine.stop();
 
 	return 0;
 }
